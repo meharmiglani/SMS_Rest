@@ -8,7 +8,7 @@ import com.flipkart.bean.User;
 import com.flipkart.dao.ProfessorDao;
 import com.flipkart.dao.StudentDao;
 
-public class AdminService {
+public class AdminService implements AdminServiceInterface {
 	private static StudentDao studentDao = new StudentDao();
 	private static ProfessorDao professorDao = new ProfessorDao();
 	

@@ -32,6 +32,13 @@ public class StudentController {
 		return studentService.getStudentCourses(studentId);
 	}
 
+	//Fetch course catalog
+	@GET
+	@Path("/getCatalog/{catalogId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Course> getCourseCatalog(@PathParam("catalogId") int catalogId){
+		return studentService.getCourseCatalog(catalogId);
+	}
 	
 	// Add a course
 	@POST
@@ -72,7 +79,7 @@ public class StudentController {
 	}
 
 	// Submit Registration
-	@GET
+	@POST
 	@Path("/submitRegistration/{studentId}/{paymentId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Payment> submitRegistration(@PathParam("studentId") int studentId,

@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Grade;
 import com.flipkart.bean.Payment;
+import com.flipkart.dao.FetchCatalogDao;
 import com.flipkart.dao.FetchReportCardDao;
 import com.flipkart.dao.FinalRegistrationDao;
 import com.flipkart.dao.PayFeeDao;
@@ -24,6 +25,7 @@ public class StudentService {
 	private static FinalRegistrationDao finalRegistrationDao = new FinalRegistrationDao();
 	private static PayFeeDao payFeeDao = new PayFeeDao();
 	private static FetchReportCardDao fetchReportCardDao = new FetchReportCardDao();
+	private static FetchCatalogDao fetchCatalogDao = new FetchCatalogDao();
 
 
 	public List<Course> getStudentCourses(int studentId) {
@@ -74,6 +76,12 @@ public class StudentService {
 		logger.info("Please pay the fee in order to confirm your registration.");
 		List<Payment> feeList = payFeeDao.fetchCourseFee(studentId);
 		double fee = 0;
+		
+		for(Payment payment: feeList){
+            fee += payment.getFee();
+            logger.info(String.format("%20s %20s %20s", payment.getCourseId(), payment.getCourseName(), payment.getFee()));
+        }
+		
 		logger.info("Fee payable: " + fee);
 
 		double scholarshipAmount = payFeeDao.getScholarshipAmount(studentId);
@@ -107,5 +115,9 @@ public class StudentService {
 	
 	public String getStudentName(int studentId) {
 		return studentDao.getStudentName(studentId);
+	}
+	
+	public List<Course> getCourseCatalog(int catalogId){
+		return fetchCatalogDao.viewCourseCatalog(catalogId);
 	}
 }

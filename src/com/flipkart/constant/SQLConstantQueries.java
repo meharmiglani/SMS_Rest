@@ -32,8 +32,6 @@ public class SQLConstantQueries {
     public static final String REGISTER_STUDENT = "UPDATE Student SET isRegistered = ? WHERE studentId = ?";
     public static final String FETCH_COURSE_FEE = "SELECT Course.courseId, Course.name, Course.fee FROM Course INNER JOIN RegisterCourse ON Course.courseId = RegisterCourse.courseId WHERE RegisterCourse.studentId = ?";
     public static final String GET_SCHOLARSHIP_AMOUNT = "SELECT scholarship FROM Student WHERE studentId = ?";
-//    public static final String INSERT_PAYMENT = "INSERT INTO Payment VALUES(?,?,?)";
-//    public static final String GET_PAYMENT_ID = "SELECT paymentId FROM Payment WHERE studentId = ?";
     public static final String INSERT_STUDENT_REGISTRATION = "INSERT INTO StudentRegistration VALUES(?,?,?,?,?)";
     public static final String CREATE_USER = "INSERT INTO User VALUES(?,?,?,?)";
     public static final String CREATE_STUDENT = "INSERT INTO Student VALUES(?,?,?,?,?,?)";
